@@ -18,7 +18,7 @@ sayName() {
     showStats() {
         console.log(
             "Name: "+ this.name,
-            " Health"+ this.health,
+            " Health: "+ this.health,
             " Speed: " + this.speed,
             " Strength: " +this.strength
         );
@@ -26,19 +26,44 @@ sayName() {
 
     drinkSake() {
         this.health += 10;
-        console.log("Sake bumped health too " + this.health);
+        console.log("Sake bumped health to " + this.health + ".");
     };
 };
 
 // ---------------------------------------------------------
 
-const tiffany = new Ninja("Tiffany", "20");
+const tiffany = new Ninja("Tiffany", 20);
 
-console.log(tiffany);
+// console.log(tiffany);
 
-    sayName(tiffany);
-    showStats(tiffany);
-    drinkSake(tiffany);
-    tiffany.sayName();
-    tiffany.showStats();
-    tiffany.drinkSake();
+    // tiffany.sayName();
+    // tiffany.showStats();
+    // tiffany.drinkSake();
+
+
+// !Sensei is the CHILD class. The parent class EXTENDS to the child class. Needs to be in the same file apparently
+
+class Sensei extends Ninja{
+    constructor(name){
+        super(name, 200)
+        this.name = name;
+        this.speed = 10;
+        this.strength = 10;
+        this.wisdom = 10;
+    };
+
+    speakWisdom() {
+        const sake = super.drinkSake();
+        // const message = "What one programmer can do in one month, two programmers can do in two months";
+        console.log(sake)
+        console.log("What one programmer can do in one month, two programmers can do in two months");
+    };
+};
+
+// speakWisdom() should call the drinkSake() method from the Ninja class, before console.logging a wise message.
+
+const superTiff = new Sensei("Super Tiff");
+
+// console.log(superTiff)
+superTiff.speakWisdom();
+superTiff.showStats();
